@@ -1,0 +1,36 @@
+{
+  "name": "generator-rgb",
+  "version": "0.0.1",
+  "description": "Backbone, Requirejs and Grunt generator which includes couple of grunt scripts for optimization and minification",
+  "license": "MIT",
+  "main": "app/index.js",
+  "repository": "smulyono/generator-rgb",
+  "author": {
+    "name": "Sanny Mulyono",
+    "email": "",
+    "url": "https://github.com/smulyono"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "app"
+  ],
+  "keywords": [
+    "yeoman-generator",
+    "grunt",
+    "backbone",
+    "requirejs"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^0.18.9",
+    "chalk": "^1.0.0",
+    "yosay": "^1.0.2"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  }
+}
