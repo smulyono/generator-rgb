@@ -1,4 +1,4 @@
-# Generator for Requirejs, Grunt and Backbone
+# Generator for Requirejs, Grunt and Backbone [![Build status](https://travis-ci.org/smulyono/generator-rgb.svg?branch=master)](https://travis-ci.org/smulyono/generator-rgb)
 
 > Yeoman generators for scaffolding a lightweight and simple Backbone with AMD support (requirejs) which also includes
 > grunt tasks for minifications and optimization
