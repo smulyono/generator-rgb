@@ -1,0 +1,393 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"tbnu",
+				"expect.to.be.undefined"
+			],
+			[
+				"childproce",
+				"child_process.spawn(file, args, options);"
+			],
+			[
+				"tb",
+				"expect.to.be.ok"
+			],
+			[
+				"e",
+				"expect.to.eql"
+			],
+			[
+				"node",
+				"node_modules"
+			],
+			[
+				"consol",
+				"console.error(message);"
+			],
+			[
+				"tbe",
+				"expect.to.be.ok"
+			],
+			[
+				"tbt",
+				"expect.to.be.true"
+			],
+			[
+				"be",
+				"before	Before"
+			],
+			[
+				"enu",
+				"expect.to.not.be.undefined"
+			],
+			[
+				"defined",
+				"expect.to.not.be.undefined"
+			],
+			[
+				"exists",
+				"path.exists(path, callback);"
+			],
+			[
+				"ex",
+				"expect.to.match"
+			],
+			[
+				"et",
+				"expect.to.equal"
+			],
+			[
+				"tbu",
+				"expect.to.not.be.undefined"
+			],
+			[
+				"tbn",
+				"expect.to.not.be.null"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 167.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"format",
+				"CodeFormatter: Format as Javascript Syntax"
+			],
+			[
+				"markm",
+				"Markmon exit"
+			],
+			[
+				"markmon",
+				"Markmon launch"
+			],
+			[
+				"mar",
+				"Markmon exit"
+			],
+			[
+				"install package",
+				"Package Control: Install Package"
+			],
+			[
+				"remove pac",
+				"Package Control: Remove Package"
+			],
+			[
+				"install pac",
+				"Package Control: Install Package"
+			],
+			[
+				"install p",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"install pack",
+				"Package Control: Install Package"
+			],
+			[
+				"install packa",
+				"Package Control: Install Package"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"isntall package",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 512.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/opt/workspace/home/npm-plugin-workspace/generator-rgb"
+	],
+	"file_history":
+	[
+		"/opt/workspace/home/nstack-workspace/nstack-core/test/test-context/module1/index.js",
+		"/opt/workspace/home/nstack-workspace/nstack-core/lib/PluginBase.js",
+		"/opt/workspace/home/nstack-workspace/nstack-core/package.json",
+		"/opt/workspace/home/topcoder-workspace/NYC-dataset-challenge_data/Submission-182387-submission/IdolHelloWorld/src/idolhelloworld/IdolHelloWorld.java",
+		"/opt/workspace/home/topcoder-workspace/NYC-dataset-challenge_data/Submission-182387-submission/submission.txt",
+		"/opt/workspace/home/topcoder-workspace/NycData/gradle.properties",
+		"/opt/workspace/home/topcoder-workspace/NycData/src/main/resources/logback.xml",
+		"/opt/workspace/home/spring-workshop/shell-gradle/src/main/java/me/smulyono/helloShell/commands/HelloShellCommand.java",
+		"/opt/workspace/home/spring-workshop/shell-gradle/build.gradle",
+		"/opt/workspace/home/spring-workshop/shell-gradle/gradle.properties",
+		"/opt/workspace/home/topcoder-workspace/NYC-dataset-challenge_data/dataset",
+		"/opt/workspace/home/spring-workshop/shell-gradle/src/main/java/me/smulyono/helloShell/commands/ShellBannerProvider.java",
+		"/opt/workspace/home/spring-workshop/shell-gradle/.springBeans",
+		"/opt/workspace/home/html5-workspace/webcomponents/package.json",
+		"/opt/workspace/home/html5-workspace/webcomponents/bower.json",
+		"/opt/workspace/home/html5-workspace/webcomponents/backbone/index.html",
+		"/opt/workspace/home/html5-workspace/webcomponents/backbone/js/main.js",
+		"/opt/workspace/home/html5-workspace/webcomponents/backbone/js/hello-component.js",
+		"/opt/workspace/home/html5-workspace/webcomponents/Gruntfile.js",
+		"/opt/workspace/home/html5-workspace/webcomponents/backbone/js/config.js",
+		"/opt/workspace/home/html5-workspace/webcomponents/js/hello-world.js",
+		"/opt/workspace/home/html5-workspace/webcomponents/bower_components/backbone/backbone.js",
+		"/opt/workspace/home/html5-workspace/webcomponents/polymer/hello-world-element.html",
+		"/opt/workspace/home/html5-workspace/webcomponents/bower_components/polymer/polymer.js",
+		"/opt/workspace/home/html5-workspace/webcomponents/polymer/index.html",
+		"/opt/workspace/home/html5-workspace/webcomponents/standard/index.html",
+		"/opt/workspace/home/html5-workspace/webcomponents/.gitignore",
+		"/opt/workspace/home/html5-workspace/webcomponents/webcomponent.sublime-project",
+		"/opt/workspace/home/webcomponent-workspace/Gruntfile.js",
+		"/opt/workspace/home/webcomponent-workspace/polymer/hello-world-element.html",
+		"/opt/workspace/home/webcomponent-workspace/npm-debug.log",
+		"/opt/workspace/home/webcomponent-workspace/bower_components/polymer/polymer.html",
+		"/opt/workspace/home/webcomponent-workspace/js/hello-world.js",
+		"/opt/workspace/home/webcomponent-workspace/standard/index.html",
+		"/opt/workspace/home/webcomponent-workspace/index.html",
+		"/opt/workspace/home/webcomponent-workspace/webcomponent.sublime-project",
+		"/Users/sannymulyono/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/sannymulyono/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/opt/workspace/home/npm-plugin-workspace/jsloadmeter/package.json",
+		"/opt/workspace/home/npm-plugin-workspace/jsloadmeter/Readme.md",
+		"/opt/workspace/home/npm-plugin-workspace/jsloadmeter/Gruntfile.js",
+		"/opt/workspace/home/npm-plugin-workspace/jsloadmeter/bin/jsloadmeter",
+		"/opt/workspace/home/npm-plugin-workspace/jsloadmeter/LICENSE.txt",
+		"/opt/workspace/home/npm-plugin-workspace/jsloadmeter/.gitignore",
+		"/opt/workspace/home/npm-plugin-workspace/jsloadmeter/lib/loadmeter.js",
+		"/opt/workspace/home/npm-plugin-workspace/jsloadmeter/node_modules/phantomjs/lib/phantomjs.js",
+		"/opt/workspace/home/npm-plugin-workspace/jsloadmeter/node_modules/phantomjs/package.json",
+		"/opt/workspace/home/npm-plugin-workspace/jsloadmeter/loadmeter.js",
+		"/opt/workspace/home/npm-plugin-workspace/jsloadmeter/node_modules/phantomjs/bin/phantomjs",
+		"/opt/workspace/home/npm-plugin-workspace/jsloadmeter/node_modules/.bin/phantomjs",
+		"/opt/workspace/home/nstack-workspace/nstack-core/node_modules/grunt-node-mocha/package.json",
+		"/opt/workspace/home/nstack-workspace/nstack-core/node_modules/grunt-mocha-phantom-istanbul/tasks/mocha.js",
+		"/opt/workspace/home/nstack-workspace/nstack-core/node_modules/grunt-node-mocha/Gruntfile.js",
+		"/opt/workspace/home/nstack-workspace/nstack-core/Gruntfile.js",
+		"/opt/workspace/home/nstack-workspace/nstack-core/test/test-context/context.json",
+		"/opt/workspace/home/nstack-workspace/nstack-core/test/test-context/module2/index.js",
+		"/opt/workspace/home/nstack-workspace/nstack-core/node_modules/.bin/grunt",
+		"/opt/workspace/home/nstack-workspace/nstack-core/test/specs/NContextSpec.js",
+		"/opt/workspace/home/nstack-workspace/nstack-core/test/specs/pluginBaseSpec.js",
+		"/opt/workspace/home/nstack-workspace/nstack-core/.gitignore",
+		"/opt/workspace/home/nstack-workspace/nstack-core/node_modules/mocha/lib/mocha.js",
+		"/opt/workspace/home/nstack-workspace/nstack-core/node_modules/mocha/bin/_mocha",
+		"/opt/workspace/home/nstack-workspace/nstack-core/node_modules/mocha/bin/mocha",
+		"/opt/workspace/home/nstack-workspace/nstack-core/LICENSE.txt",
+		"/opt/workspace/home/nstack-workspace/nstack-core/LICENSE-Apache 2.0",
+		"/opt/workspace/home/nstack-workspace/nstack-core/karma.conf.js",
+		"/opt/workspace/home/nstack-workspace/nstack-core/conf.description/context.json.example",
+		"/opt/workspace/home/nstack-workspace/nstack-core/v8.log",
+		"/Users/sannymulyono/Library/Application Support/Sublime Text 3/Packages/User/CodeFormatter.sublime-settings",
+		"/Users/sannymulyono/Library/Application Support/Sublime Text 3/Packages/CodeFormatter/CodeFormatter.sublime-settings",
+		"/Users/sannymulyono/Library/Application Support/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/opt/workspace/home/nstack-workspace/nstack-core/lib/CoreConst.js",
+		"/opt/workspace/home/nstack-workspace/nstack-core/lib/MessageConst.js",
+		"/Users/sannymulyono/Library/Application Support/Sublime Text 3/Packages/CodeFormatter/Default (OSX).sublime-keymap",
+		"/Users/sannymulyono/Library/Application Support/Sublime Text 3/Packages/User/Distraction Free.sublime-settings",
+		"/opt/workspace/home/nstack-workspace/nstack-core/nstack-core.js",
+		"/opt/workspace/home/nstack-workspace/nstack-core/lib/NContext.js",
+		"/opt/workspace/home/nstack-workspace/nstack-core/index.js",
+		"/Users/sannymulyono/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/Users/sannymulyono/Library/Application Support/Sublime Text 3/Packages/JSLint/JSLint.sublime-settings",
+		"/opt/workspace/home/nstack-workspace/nstack-core/node_modules/.bin/mocha",
+		"/opt/workspace/home/nstack-workspace/nstack-core/node_modules/chai/lib/chai.js",
+		"/opt/workspace/home/nstack-workspace/nstack-core/node_modules/jasmine-node/lib/jasmine-node/index.js",
+		"/opt/workspace/home/nstack-workspace/nstack-core/node_modules/chai/chai.js",
+		"/opt/workspace/home/nstack-workspace/nstack-core/nstack-core.sublime-project",
+		"/opt/workspace/home/nstack-workspace/nstack-core/npm-debug.log",
+		"/opt/src/sts-bundle/sts-3.6.2.RELEASE/STS.app/Contents/MacOS/STS.ini",
+		"/opt/src/sts-bundle/sts-3.6.2.RELEASE/STS.app/Contents/Info.plist",
+		"/Users/sannymulyono/Dropbox/eclipse-pref/standard-meta/Servers/VMware vFabric tc Server Developer Edition v2.9-config/catalina.policy"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 114.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			".js",
+			"grunt-node-mocha",
+			"[0]",
+			"argvalues",
+			"loadMeterOpts",
+			"stdin",
+			"stderr",
+			"returnOptions",
+			"open",
+			"count",
+			"simplemocha",
+			"true",
+			"NCONTEXT.EMITTER",
+			"message",
+			"=",
+			"prototoype",
+			", modulePath",
+			"PluginBase",
+			"pluginBase"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 40.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "generator-rgb.sublime-project",
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 233.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
