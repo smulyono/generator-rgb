@@ -23,7 +23,7 @@ module.exports = function(grunt){
         },
         clean : {
             vendors : ["assets/js/vendor"],
-            build : ["build"]
+            build : ["build", "assets/css/main.css", "assets/css/main.css.map"]
         },
         cssmin : {
             build : {
@@ -60,8 +60,23 @@ module.exports = function(grunt){
                     ]
                 }
             }
+        },
+        less : {
+            options : {
+                compress : true,
+                sourceMap : true,
+                outputSourceFiles : true
+            },
+            mainCss : {
+                options : {
+                    sourceMapURL : "main.css.map",
+                    sourceMapFilename : "assets/css/main.css.map",
+                },
+                files : {
+                    "assets/css/main.css" : "assets/less/main.less"
+                }
+            }
         }
-
     });
 
     // load all grunt--* plugins
@@ -70,7 +85,7 @@ module.exports = function(grunt){
 
     // Default task(s).
     grunt.registerTask('default', ['connect:dev']);
-    grunt.registerTask('build', ['clean:build', 'requirejs:build', 'cssmin']);
+    grunt.registerTask('build', ['clean:build', 'less', 'requirejs:build', 'cssmin']);
 
 
 }
