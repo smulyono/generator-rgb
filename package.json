@@ -1,6 +1,6 @@
 {
   "name": "generator-rgb",
-  "version": "0.0.1",
+  "version": "1.0.0-SNAPSHOT",
   "description": "Backbone, Requirejs and Grunt generator which includes couple of grunt scripts for optimization and minification",
   "license": "MIT",
   "main": "app/index.js",

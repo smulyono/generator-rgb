@@ -2,6 +2,17 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+
+String.prototype.endsWith = function(searchString, position) {
+  var subjectString = this.toString();
+  if (position === undefined || position > subjectString.length) {
+    position = subjectString.length;
+  }
+  position -= searchString.length;
+  var lastIndex = subjectString.indexOf(searchString, position);
+  return lastIndex !== -1 && lastIndex === position;
+};
+
 module.exports = yeoman.generators.Base.extend({
     initializing: function() {
         this.pkg = require('../package.json');
@@ -11,7 +22,15 @@ module.exports = yeoman.generators.Base.extend({
         var done = this.async();
 
         // ask for application name argument
-        var prompts = [{
+        var prompts = [
+        {
+            name : "destinationDirectory",
+            type : "string",
+            default : ".",
+            required : true,
+            message : "Specify where the new app structure will be generated?"
+        },
+        {
             name : "appName",
             type : "String",
             required : true,
@@ -35,6 +54,7 @@ module.exports = yeoman.generators.Base.extend({
         }];
 
         this.prompt(prompts, function(props){
+            this.destDirectory = props.destinationDirectory;
             this.appName = props.appName;
             this.appDescription = props.appDescription;
             this.author = props.author;
@@ -44,18 +64,21 @@ module.exports = yeoman.generators.Base.extend({
         }.bind(this));
     },
     structureCreation : function(){
+        if (!this.destDirectory.endsWith("/")){
+            this.destDirectory += "/";
+        }
         // move all of the files which don't need any templating first
         this.fs.copy(
             this.templatePath("editorconfig"),
-            ".editorconfig"
+            this.destDirectory + ".editorconfig"
             );
         this.fs.copy(
             this.templatePath("jshintrc"),
-            ".jshintrc"
+            this.destDirectory + ".jshintrc"
             );
         this.fs.copy(
             this.templatePath("_gruntfile.js"),
-            "Gruntfile.js"
+            this.destDirectory + "Gruntfile.js"
             );
         //
         var appData = {
@@ -67,24 +90,24 @@ module.exports = yeoman.generators.Base.extend({
         };
         this.fs.copyTpl(
                 this.templatePath("_bower.json"),
-                "bower.json",
+                this.destDirectory + "bower.json",
                 appData);
         this.fs.copyTpl(
                 this.templatePath("_package.json"),
-                "package.json",
+                this.destDirectory + "package.json",
                 appData);
         this.fs.copyTpl(
                 this.templatePath("_index.html"),
-                "index.html",
+                this.destDirectory + "index.html",
                 appData);
         // The assets folder
         if (!this.fs.exists("assets")){
-            this.mkdir("assets");
+            this.mkdir(this.destDirectory + "assets");
         }
 
         this.directory(
             this.templatePath("assets"),
-            "assets"
+            this.destDirectory + "assets"
             );
     },
     install: function() {

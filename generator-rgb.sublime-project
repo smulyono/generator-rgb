@@ -3,7 +3,7 @@
 	[
 		{
 			"path": ".",
-			"follow_symlinks" : true
+			"follow_symlinks": true
 		}
 	]
 }
