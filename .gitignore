@@ -1,2 +1,5 @@
 node_modules/
 npm-debug.log
+
+## any local sublime project will not be committed
+generator-rgb.sublime-project

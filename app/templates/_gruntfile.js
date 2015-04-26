@@ -23,7 +23,7 @@ module.exports = function(grunt){
         },
         clean : {
             vendors : ["assets/js/vendor"],
-            build : ["build"]
+            build : ["build", "assets/css/main.css", "assets/css/main.css.map"]
         },
         cssmin : {
             build : {
@@ -34,7 +34,7 @@ module.exports = function(grunt){
                     {
                         expand : true,
                         cwd : BUILD_DIR,
-                        src : "assets/css",
+                        src : ["assets/css/*.css", "assets/css/**/*.css", "!assets/css/*.min.css", "!assets/css/**/*.min.css"],
                         dest: BUILD_DIR
                     }
                 ]
@@ -43,7 +43,7 @@ module.exports = function(grunt){
         requirejs : {
             build : {
                 options : {
-                    optimize : "none",
+                    optimize : "uglify2",
                     findNestedDependencies : false,
                     baseUrl : "./",
                     dir : BUILD_DIR,
@@ -60,8 +60,52 @@ module.exports = function(grunt){
                     ]
                 }
             }
+        },
+        less : {
+            options : {
+                compress : true,
+                sourceMap : true,
+                outputSourceFiles : true
+            },
+            mainCss : {
+                options : {
+                    sourceMapURL : "main.css.map",
+                    sourceMapFilename : "assets/css/main.css.map",
+                },
+                files : {
+                    "assets/css/main.css" : "assets/less/main.less"
+                }
+            }
+        },
+        compare_size : {
+            files : [
+                'assets/css/**/*.css',
+                'assets/js/**/*.js',
+                'build/assets/css/**/*.css',
+                'build/assets/js/**/*.js'
+            ]
+        },
+        useminPrepare : {
+            build : "*.html",
+            options : {
+                dest : BUILD_DIR,
+                flow : {
+                    build : {
+                        steps : {
+                            css : ['concat'], // cssmin will take care of the minimalization
+                            js : ['requirejs'] // requirejs build will take care of this
+                        },
+                        post : {}
+                    }
+                }
+            }
+        },
+        usemin : {
+            build : BUILD_DIR + "/*.html",
+            options : {
+                dirs : BUILD_DIR
+            }
         }
-
     });
 
     // load all grunt--* plugins
@@ -70,7 +114,16 @@ module.exports = function(grunt){
 
     // Default task(s).
     grunt.registerTask('default', ['connect:dev']);
-    grunt.registerTask('build', ['clean:build', 'requirejs:build', 'cssmin']);
-
-
+    grunt.registerTask('build', [
+        'clean:build', 
+        'less',
+        'requirejs:build',
+        'buildHTML',
+        'cssmin:build' 
+    ]);
+    grunt.registerTask('buildHTML', [
+        'useminPrepare',
+        'concat:generated',
+        'usemin'
+    ]);
 }

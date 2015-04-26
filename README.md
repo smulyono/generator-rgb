@@ -3,6 +3,14 @@
 > Yeoman generators for scaffolding a lightweight and simple Backbone with AMD support (requirejs) which also includes
 > grunt tasks for minifications and optimization
 
+## Features
+
+* [x] Backbone with AMD (requirejs) supports
+* [x] HTML5 template with modernizr
+* [x] Less supports
+* [x] Requirejs optimization script
+* [x] Assets optimization (Javascript and CSS) and aggregation
+
 ## Getting Started
 
 Make sure you have Yeoman installed : 
@@ -53,3 +61,12 @@ $ grunt connect:live
 ## License
 
 __MIT__
+
+## Future Features
+* [ ] Almond replacement for more requirejs optimization
+* [ ] React page with backbone boilerplate
+* [ ] Famo.us page with requirejs/backbone boilerplate
+* [ ] Multi SPA organization layouts 
+  * [ ] Support creating individual SPA sites
+  * [ ] Support creating individual pages
+
