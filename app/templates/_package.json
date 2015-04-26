@@ -11,10 +11,10 @@
     },
     "scripts": {
         "prestart": "npm install",
-        "postinstall" : "./node_modules/.bin/bower cache clean && ./node_modules/.bin/bower install && ./node_modules/.bin/bower-installer",
+        "postinstall": "./node_modules/.bin/bower cache clean && ./node_modules/.bin/bower install && ./node_modules/.bin/bower-installer",
         "start": "./node_modules/.bin/grunt",
         "build": "./node_modules/.bin/grunt build",
-        "start_live" : "./node_modules/.bin/grunt connect:live"
+        "start_live": "./node_modules/.bin/grunt connect:live"
     },
     "keywords": ["backbone", "requirejs", "grunt", "rgb"],
     "dependencies": {
@@ -22,7 +22,9 @@
         "bower-installer": "0.8.4",
         "grunt": "~0.4.5",
         "grunt-cli": "~0.1.13",
+        "grunt-compare-size": "^0.4.0",
         "grunt-contrib-clean": "~0.6.0",
+        "grunt-contrib-concat": "~0.5.1",
         "grunt-contrib-connect": "~0.9.0",
         "grunt-contrib-cssmin": "~0.12.2",
         "grunt-contrib-less": "~1.0.1",
@@ -31,6 +33,7 @@
         "grunt-contrib-watch": "~0.6.1",
         "grunt-jsdoc": "~0.5.8",
         "grunt-karma": "~0.10.1",
+        "grunt-usemin": "^3.0.0",
         "karma": "~0.12.31",
         "karma-chrome-launcher": "~0.1.7",
         "karma-coverage": "~0.2.7",
