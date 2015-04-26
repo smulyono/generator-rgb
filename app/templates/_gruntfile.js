@@ -113,7 +113,10 @@ module.exports = function(grunt){
     require('time-grunt')(grunt);
 
     // Default task(s).
-    grunt.registerTask('default', ['connect:dev']);
+    grunt.registerTask('default', [
+        'less',
+        'connect:dev'
+    ]);
     grunt.registerTask('build', [
         'clean:build', 
         'less',
