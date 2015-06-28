@@ -10,6 +10,9 @@
 * [x] Less supports
 * [x] Requirejs optimization script
 * [x] Assets optimization (Javascript and CSS) and aggregation
+* [x] Almond replacement for more requirejs optimization
+* [ ] Unit test integrations (karma & jasmine support)
+
 
 ## Getting Started
 
@@ -63,9 +66,9 @@ $ grunt connect:live
 __MIT__
 
 ## Future Features
-* [ ] Almond replacement for more requirejs optimization
 * [ ] React page with backbone boilerplate
 * [ ] Famo.us page with requirejs/backbone boilerplate
+* [ ] Bulding single deployable API module
 * [ ] Multi SPA organization layouts 
   * [ ] Support creating individual SPA sites
   * [ ] Support creating individual pages

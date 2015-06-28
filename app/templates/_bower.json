@@ -15,7 +15,8 @@
         "backbone": "~1.1.2",
         "jquery": "1.11.2",
         "modernizr": "~2.8.3",
-        "bootstrap": "2.3.2"
+        "bootstrap": "3.3.4",
+        "almond": "~0.3.1"
     },
     "resolutions": {
         "jquery": "1.11.2"
@@ -24,7 +25,13 @@
         "path": {
             "js": "assets/js/vendor",
             "css": "assets/css/vendor",
-            "map": "assets/js/vendor"
+            "map": "assets/js/vendor",
+            "less" : "assets/less/vendor",
+            "eot" : "assets/fonts/vendor",
+            "svg" : "assets/fonts/vendor",
+            "ttf" : "assets/fonts/vendor", 
+            "woff" : "assets/fonts/vendor",
+            "woff2" : "assets/fonts/vendor"
         },
         "sources": {
             "jquery": [

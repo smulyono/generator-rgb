@@ -111,7 +111,7 @@ module.exports = yeoman.generators.Base.extend({
             );
     },
     install: function() {
-        this.log("Creating scaffolding " + this.name +
+        this.log("Creating scaffolding " + this.appName +
             " Application with " + chalk.red("R") +
             "equirejs, " + chalk.green("G") +
             "runt and " + chalk.cyan("B") + "ackbone");

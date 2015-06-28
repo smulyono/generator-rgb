@@ -46,8 +46,7 @@
         "karma-script-launcher": "~0.1.0",
         "load-grunt-tasks": "~3.1.0",
         "requirejs": "2.1.16",
-        "requirejs-text": "2.0.12",
-        "source-map": "^0.4.2",
+         "source-map": "^0.4.2",
         "time-grunt": "^1.1.0"
     }
 }
