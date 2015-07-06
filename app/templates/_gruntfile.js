@@ -22,17 +22,21 @@ module.exports = function(grunt){
         ALMOND_LIBRARY_PATH = "assets/js/vendor/almond/almond",
         JS_MODULE_DIR = [
             {
-                "name" : "assets/js/main",
+                "name" : "app/main",
                 "include" : ALMOND_LIBRARY_PATH
             }
         ],
         JS_CONFIG_FILE = [
-            "assets/js/config.js"
+            "config/config.js"
         ],
         // LIST OF JAVASCRIPT FILES BEING DEPLOYED
         JS_SOURCE_DIR = [
+            "app/**/*.js",
+            "app/*.js",
             "assets/js/*.js",
             "assets/js/**/*.js",
+            "!app/**/*.min.js",
+            "!app/*.min.js",
             "!assets/js/*.min.js",
             "!assets/js/**/*.min.js",
             "!assets/js/vendor/**/*.js"

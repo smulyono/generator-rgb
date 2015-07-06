@@ -1,0 +1,1 @@
+require(["<%=appName%>Route"], function(){});
