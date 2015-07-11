@@ -2,21 +2,29 @@
     "name": "<%=appName%>",
     "description": "<%=appDescription%>",
     "version": "<%=appVersion%>",
+    "authors" : [
+        "<%=author%> <%=authorEmail%>"
+    ],
+    "main" : [
+        "dist/app/main.js"
+    ],
     "ignore": [
         "**/.*",
         "node_modules",
         "bower_components",
+        "build",
         "test",
         "tests"
     ],
-    "dependencies": {
+    "devDependencies": {
         "requirejs": "~2.1.14",
         "underscore": "~1.6.0",
         "backbone": "~1.1.2",
         "jquery": "1.11.2",
         "modernizr": "~2.8.3",
         "bootstrap": "3.3.4",
-        "almond": "~0.3.1"
+        "almond": "~0.3.1",
+        "requirejs-text": "~2.0.14"
     },
     "resolutions": {
         "jquery": "1.11.2"

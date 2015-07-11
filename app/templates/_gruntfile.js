@@ -1,8 +1,8 @@
 module.exports = function(grunt){
-    "use strict";
+    
     // ====================== CONFIGURATION ============== //
     var SOURCE_DIR = "./",
-        BUILD_DIR = "build",
+        BUILD_DIR = grunt.option("build_dir") || "build",
         // DEFAULT LESS SOURCE DIRECTORY
         LESS_ROOT_DIR = "assets/less",
         LESS_SOURCE_DIR = ["*.less"],
@@ -22,21 +22,27 @@ module.exports = function(grunt){
         ALMOND_LIBRARY_PATH = "assets/js/vendor/almond/almond",
         JS_MODULE_DIR = [
             {
-                "name" : "assets/js/main",
+                "name" : "app/main",
                 "include" : ALMOND_LIBRARY_PATH
             }
         ],
         JS_CONFIG_FILE = [
-            "assets/js/config.js"
+            "config/config.js"
         ],
         // LIST OF JAVASCRIPT FILES BEING DEPLOYED
         JS_SOURCE_DIR = [
+            "app/**/*.js",
+            "app/*.js",
             "assets/js/*.js",
             "assets/js/**/*.js",
+            "!app/**/*.min.js",
+            "!app/*.min.js",
             "!assets/js/*.min.js",
             "!assets/js/**/*.min.js",
             "!assets/js/vendor/**/*.js"
         ];
+        // File exclusions during sites build
+        BUILD_EXCLUSIONS = /^(build|dist|bower\_components|node\_modules|\.|Gruntfile|config|package\.json|bower\.json).*/i;
 
     // ====================== END OF CONFIGURATION ============== //
 
@@ -60,7 +66,7 @@ module.exports = function(grunt){
         },
         clean : {
             vendors : ["assets/js/vendor"],
-            build : ["build"]
+            build : [BUILD_DIR]
         },
         cssmin : {
             build : {
@@ -101,15 +107,18 @@ module.exports = function(grunt){
             }
         },
         requirejs : {
+            options : {
+                optimize : "none",
+                optimizeCss : "none",
+                baseUrl : SOURCE_DIR,
+                dir : BUILD_DIR,
+                findNestedDependencies : true,
+                mainConfigFile : JS_CONFIG_FILE,
+                modules : JS_MODULE_DIR
+            },
             build : {
                 options : {
-                    optimize : "none",
-                    optimizeCss : "none",
-                    baseUrl : SOURCE_DIR,
-                    dir : BUILD_DIR,
-                    findNestedDependencies : true,
-                    mainConfigFile : JS_CONFIG_FILE,
-                    modules : JS_MODULE_DIR
+                    fileExclusionRegExp : BUILD_EXCLUSIONS
                 }
             }
         },
