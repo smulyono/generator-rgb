@@ -14,6 +14,7 @@
         "postinstall": "./node_modules/.bin/bower cache clean && ./node_modules/.bin/bower install && ./node_modules/.bin/bower-installer",
         "start": "./node_modules/.bin/grunt",
         "build": "./node_modules/.bin/grunt build",
+        "build_component" : "./node_modules/.bin/grunt build --build_dir=dist",
         "start_live": "./node_modules/.bin/grunt connect:live"
     },
     "keywords": ["backbone", "requirejs", "grunt", "rgb"],

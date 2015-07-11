@@ -12,9 +12,8 @@
 
 ## Features
 
-* [ ] Multi purpose Requirejs(AMD),Grunt scripts and Backbone based application generators. 
-* [ ] Bulding single deployable API module
-* [ ] Unit test integrations (karma & jasmine support)
+* [x] Multi purpose Requirejs(AMD),Grunt scripts and Backbone based application generators. 
+* [x] Bulding single deployable API module
 * [x] Backbone with AMD (requirejs) supports
 * [x] HTML5 template with modernizr
 * [x] Less supports
@@ -80,6 +79,7 @@ $ grunt connect:live
 __MIT__
 
 ## Future Features
+* [ ] Unit test integrations (karma & jasmine support)
 * [ ] React page with backbone boilerplate
 * [ ] Famo.us page with requirejs/backbone boilerplate
 * [ ] Multi SPA organization layouts 

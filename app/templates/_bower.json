@@ -2,14 +2,21 @@
     "name": "<%=appName%>",
     "description": "<%=appDescription%>",
     "version": "<%=appVersion%>",
+    "authors" : [
+        "<%=author%> <%=authorEmail%>"
+    ],
+    "main" : [
+        "dist/app/main.js"
+    ],
     "ignore": [
         "**/.*",
         "node_modules",
         "bower_components",
+        "build",
         "test",
         "tests"
     ],
-    "dependencies": {
+    "devDependencies": {
         "requirejs": "~2.1.14",
         "underscore": "~1.6.0",
         "backbone": "~1.1.2",
