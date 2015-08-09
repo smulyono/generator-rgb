@@ -1,7 +1,7 @@
 # Generator for Requirejs, Grunt and Backbone 
 > Travis-CI build : [![Build status](https://travis-ci.org/smulyono/generator-rgb.svg?branch=master)](https://travis-ci.org/smulyono/generator-rgb) 
 
-> Docker.io build : [![Build Status](https://drone.io/github.com/smulyono/generator-rgb/status.png)](https://drone.io/github.com/smulyono/generator-rgb/latest)
+> Drone.io build : [![Build Status](https://drone.io/github.com/smulyono/generator-rgb/status.png)](https://drone.io/github.com/smulyono/generator-rgb/latest)
 
 > Yeoman generators for scaffolding a lightweight and simple Backbone with AMD support (requirejs) which also includes
 > grunt tasks for minifications and optimization. This generator is mainly collections of the grunt and workflows to scaffold :
@@ -20,6 +20,8 @@
 * [x] Requirejs optimization script
 * [x] Assets optimization (HTML, Javascript and CSS) and aggregation
 * [x] Almond replacement on requirejs optimization
+* [x] Unit test integrations (karma & jasmine support)
+
 
 
 ## Getting Started
@@ -44,6 +46,15 @@ __OK__, now we ready to start creating some apps. First, let's create directory 
 $ mkdir newApp && cd $_
 $ yo rgb 
 ```
+
+### Creating First application
+![Getting started](demo/getstarted.gif)
+
+### Running unit test
+![Unit test](demo/unittest.gif)
+
+
+### Run the applications
 
 
 ### Available NPM Tasks 
@@ -79,7 +90,6 @@ $ grunt connect:live
 __MIT__
 
 ## Future Features
-* [ ] Unit test integrations (karma & jasmine support)
 * [ ] React page with backbone boilerplate
 * [ ] Famo.us page with requirejs/backbone boilerplate
 * [ ] Multi SPA organization layouts 
