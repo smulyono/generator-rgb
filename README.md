@@ -51,13 +51,23 @@ $ yo rgb
 ![Getting started](demo/getstarted.gif)
 
 ### Running unit test
+
+```bash
+# Run all unit test
+$ npm test
+
+# With individual unit test
+$ npm test -- -file=<specFile>
+
+# Creating spec file
+$ yo rgb
+---> choose New Spec Test
+```
+
 ![Unit test](demo/unittest.gif)
 
 
-### Run the applications
-
-
-### Available NPM Tasks 
+### Other __npm__ tasks available
 
 __For development__:
 ```bash
@@ -88,11 +98,4 @@ $ grunt connect:live
 ## License
 
 __MIT__
-
-## Future Features
-* [ ] React page with backbone boilerplate
-* [ ] Famo.us page with requirejs/backbone boilerplate
-* [ ] Multi SPA organization layouts 
-  * [ ] Support creating individual SPA sites
-  * [ ] Support creating individual pages
 
