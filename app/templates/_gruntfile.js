@@ -40,10 +40,17 @@ module.exports = function(grunt){
             "!assets/js/*.min.js",
             "!assets/js/**/*.min.js",
             "!assets/js/vendor/**/*.js"
-        ];
+        ],
         // File exclusions during sites build
-        BUILD_EXCLUSIONS = /^(build|dist|bower\_components|node\_modules|\.|Gruntfile|config|package\.json|bower\.json).*/i;
-
+        BUILD_EXCLUSIONS = /^(build|dist|bower\_components|node\_modules|\.|Gruntfile|config|package\.json|bower\.json).*/i,
+        TEST_DIR = "test",
+        KARMA_CONFIGURATION_FILES = [
+            {pattern: 'config/**/*.js', included: true},
+            {pattern: 'app/**/templates/**/*.html', included : false},
+            {pattern: 'app/**/i18n/**/*.properties', included : false},
+            {pattern: 'app/**/*.js', included: false},
+            {pattern: 'assets/**/*.js', included: false}
+        ];
     // ====================== END OF CONFIGURATION ============== //
 
     grunt.initConfig({
@@ -88,6 +95,17 @@ module.exports = function(grunt){
                 'build/assets/js/**/*.js'
             ]
         },
+        karma : {
+            options : {
+                files : KARMA_CONFIGURATION_FILES
+            },
+            e2e : {
+                configFile : TEST_DIR + "/config/e2e_karma.conf.js"
+            },
+            file : {
+                configFile : TEST_DIR + "/config/individual_karma.conf.js"
+            }
+        },      
         less : {
             build : {
                 options : {
@@ -196,5 +214,32 @@ module.exports = function(grunt){
     ]);
     grunt.registerTask('complete_task', 'Completed Task', function(){
         grunt.log.subhead("All tasks are completed");
+    });
+
+    // Register Karma Individual unit test
+    grunt.registerTask('test', 'Run unit test test', function(){
+        var unittestFile = grunt.option("file") || "";
+
+        if (unittestFile === ""){
+            grunt.log.subhead("Running end 2 end unit testing");
+            var e2eKarmaFiles = KARMA_CONFIGURATION_FILES;
+            e2eKarmaFiles.push("test/config/e2e_test_main.js");
+            e2eKarmaFiles.push({pattern : 'test/**/*Spec.js', included:false});
+            e2eKarmaFiles.push({pattern : 'test/**/*spec.js', included:false});
+            grunt.config('karma.config.files', e2eKarmaFiles);
+            grunt.log.writeln('Config files ', e2eKarmaFiles);
+            grunt.task.run("karma:e2e");
+        } else {
+            grunt.log.subhead("Running individual unit testing");
+            var individualKarmaFiles = KARMA_CONFIGURATION_FILES;
+            if (unittestFile.indexOf(".js") <= -1){
+                unittestFile += ".js";
+            }
+            individualKarmaFiles.push("test/config/individual_test_main.js");
+            individualKarmaFiles.push({pattern : 'test/**/' + unittestFile, included:false});
+            grunt.config('karma.config.files', individualKarmaFiles);
+            grunt.log.writeln('Config files ', individualKarmaFiles);
+            grunt.task.run("karma:file");
+        }
     });
 }

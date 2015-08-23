@@ -1,13 +1,13 @@
 {
   "name": "generator-rgb",
-  "version": "1.0.0-SNAPSHOT",
+  "version": "1.0.0",
   "description": "Backbone, Requirejs and Grunt generator which includes couple of grunt scripts for optimization and minification",
   "license": "MIT",
   "main": "app/index.js",
   "repository": "smulyono/generator-rgb",
   "author": {
     "name": "Sanny Mulyono",
-    "email": "",
+    "email": "smulyono@me.com",
     "url": "https://github.com/smulyono"
   },
   "engines": {
