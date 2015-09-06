@@ -59,8 +59,7 @@ module.exports = function(grunt){
             dev: {
                 options: {
                     port: 3000,
-                    base: ".",
-                    keepalive: true
+                    base: "."
                 }
             },
             live : {
@@ -196,7 +195,8 @@ module.exports = function(grunt){
     // Default task(s).
     grunt.registerTask('default', [
         'less',
-        'connect:dev'
+        'connect:dev',
+        'watch:less'
     ]);
     grunt.registerTask('build', [
         'clean:build',                  // clean directory
