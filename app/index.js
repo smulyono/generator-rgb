@@ -92,7 +92,22 @@ module.exports = yeoman.generators.Base.extend({
                 done();
             }.bind(this));
         }
-
+    },
+    destinationFolder : function(){
+        var done = this.async();
+        var destinationFolderPrompts = [
+            {
+                name : "destDirectory", 
+                type : "string",
+                default : ".", 
+                required : true,
+                message : "Specificy where this application to be created ?"
+            }
+        ];
+        this.prompt(destinationFolderPrompts, function(props){
+            this.destDirectory = props.destDirectory;
+            done();
+        }.bind(this));
     },
     prepareStructureForSpec : function(){
         var done = this.async();
