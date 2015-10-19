@@ -55,6 +55,20 @@ module.exports = function(grunt){
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        browserSync : {
+            dev  : {
+                options : {
+                    server : {
+                        baseDir : "."
+                    },
+                    watchTask : true
+                },
+                bsFiles : {
+                    src : CSS_SOURCE_DIR,
+                },
+                port : 3000
+            }
+        },        
         connect: {
             dev: {
                 options: {
@@ -195,7 +209,7 @@ module.exports = function(grunt){
     // Default task(s).
     grunt.registerTask('default', [
         'less',
-        'connect:dev',
+        'browserSync:dev',
         'watch:less'
     ]);
     grunt.registerTask('build', [
