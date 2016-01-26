@@ -41,6 +41,12 @@ module.exports = function(grunt){
             "!assets/js/**/*.min.js",
             "!assets/js/vendor/**/*.js"
         ],
+        // List of files to be watched by browserSync
+        BROWSER_SYNC_WATCHED_FILES = [
+            "*.html",
+            "*.js",
+            "*.css"
+        ],        
         // File exclusions during sites build
         BUILD_EXCLUSIONS = /^(build|dist|bower\_components|node\_modules|\.|Gruntfile|config|package\.json|bower\.json).*/i,
         TEST_DIR = "test",
@@ -55,6 +61,20 @@ module.exports = function(grunt){
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        browserSync : {
+            dev  : {
+                options : {
+                    server : {
+                        baseDir : "."
+                    },
+                    watchTask : true
+                },
+                bsFiles : {
+                    src : BROWSER_SYNC_WATCHED_FILES, 
+                },
+                port : 3000
+            }
+        },        
         connect: {
             dev: {
                 options: {
@@ -195,7 +215,7 @@ module.exports = function(grunt){
     // Default task(s).
     grunt.registerTask('default', [
         'less',
-        'connect:dev',
+        'browserSync:dev',
         'watch:less'
     ]);
     grunt.registerTask('build', [
