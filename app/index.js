@@ -99,7 +99,7 @@ module.exports = yeoman.generators.Base.extend({
             {
                 name : "destDirectory", 
                 type : "string",
-                default : ".", 
+                default : this.appName, 
                 required : true,
                 message : "Specificy where this application to be created ?"
             }

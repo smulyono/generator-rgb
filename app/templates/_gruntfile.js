@@ -41,6 +41,12 @@ module.exports = function(grunt){
             "!assets/js/**/*.min.js",
             "!assets/js/vendor/**/*.js"
         ],
+        // List of files to be watched by browserSync
+        BROWSER_SYNC_WATCHED_FILES = [
+            "*.html",
+            "*.js",
+            "*.css"
+        ],        
         // File exclusions during sites build
         BUILD_EXCLUSIONS = /^(build|dist|bower\_components|node\_modules|\.|Gruntfile|config|package\.json|bower\.json).*/i,
         TEST_DIR = "test",
@@ -64,7 +70,7 @@ module.exports = function(grunt){
                     watchTask : true
                 },
                 bsFiles : {
-                    src : CSS_SOURCE_DIR,
+                    src : BROWSER_SYNC_WATCHED_FILES, 
                 },
                 port : 3000
             }
