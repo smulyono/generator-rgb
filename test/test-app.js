@@ -19,7 +19,8 @@ describe('rgb:app', function() {
                 "appDescription" : "some description",
                 "version" : "1.0.0",
                 "author" : "testname",
-                "email" : "c@email"
+                "email" : "c@email",
+                "destDirectory" : "."
             })
             .on('end', function(){
                 done();
