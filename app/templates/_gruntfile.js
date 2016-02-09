@@ -30,6 +30,7 @@ module.exports = function(grunt){
             "config/config.js"
         ],
         // LIST OF JAVASCRIPT FILES BEING DEPLOYED
+        // Default: only concern of everything under app/** and assets/**
         JS_SOURCE_DIR = [
             "app/**/*.js",
             "app/*.js",
@@ -42,10 +43,11 @@ module.exports = function(grunt){
             "!assets/js/vendor/**/*.js"
         ],
         // List of files to be watched by browserSync
+        // Default, will watch any changes of JS, CSS, HTML
         BROWSER_SYNC_WATCHED_FILES = [
-            "*.html",
-            "*.js",
-            "*.css"
+            "**/*.html", "*.html",
+            "**/*.js","*.js",
+            "**/*.css", "*.css"
         ],        
         // File exclusions during sites build
         BUILD_EXCLUSIONS = /^(build|dist|bower\_components|node\_modules|\.|Gruntfile|config|package\.json|bower\.json).*/i,

@@ -101,7 +101,7 @@ module.exports = yeoman.generators.Base.extend({
                 type : "string",
                 default : this.appName, 
                 required : true,
-                message : "Specificy where this application to be created ?"
+                message : "Specificy where this application to be created ? (use . for current directory)"
             }
         ];
         this.prompt(destinationFolderPrompts, function(props){

@@ -83,9 +83,9 @@ $ grunt build
 
 __For building the site/app as deployable Bower library or standalone__:
 ```bash
-$ npm run build_lib
+$ npm run build_component
 OR
-$ grunt build:lib
+$ grunt build:build_component
 ```
 
 __For running in production mode__:
