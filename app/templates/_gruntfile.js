@@ -1,5 +1,5 @@
 module.exports = function(grunt){
-    
+
     // ====================== CONFIGURATION ============== //
     var SOURCE_DIR = "./",
         BUILD_DIR = grunt.option("build_dir") || "build",
@@ -13,23 +13,15 @@ module.exports = function(grunt){
         CSS_ROOT_DIR = "assets/css",
         // DEFAULT CSS SOURCE DIRECTORY
         CSS_SOURCE_DIR = [
-            "assets/css/*.css", 
+            "assets/css/*.css",
             "assets/css/**/*.css",
             "!assets/css/*.min.css",
             "!assets/css/**/*.min.css"
         ],
-        // LIST ALL OF JAVASCRIPT MODULES
-        ALMOND_LIBRARY_PATH = "assets/js/vendor/almond/almond",
-        JS_MODULE_DIR = [
-            {
-                "name" : "app/main",
-                "include" : ALMOND_LIBRARY_PATH
-            }
-        ],
-        JS_CONFIG_FILE = [
-            "config/config.js"
-        ],
-        // LIST OF JAVASCRIPT FILES BEING DEPLOYED
+        // *****************************************************************//
+        //              LIST OF JAVASCRIPT FILES BEING DEPLOYED             //
+        // Default: only concern of everything under app/** and assets/**   //
+        // *****************************************************************//
         JS_SOURCE_DIR = [
             "app/**/*.js",
             "app/*.js",
@@ -41,14 +33,92 @@ module.exports = function(grunt){
             "!assets/js/**/*.min.js",
             "!assets/js/vendor/**/*.js"
         ],
-        // List of files to be watched by browserSync
-        BROWSER_SYNC_WATCHED_FILES = [
-            "*.html",
-            "*.js",
-            "*.css"
-        ],        
+        // *****************************************************************//
+
+        // *****************************************************************//
+        //              SITE BUILD CONFIGURATION                            //
+        // Note: Change below configuration to match your specific module   //
+        // *****************************************************************//
+        ALMOND_LIBRARY_PATH = "assets/js/vendor/almond/almond",
+        // Modules which will be build
+        JS_MODULE_DIR = [
+            {
+                "name" : "app/main",
+                "include" : ALMOND_LIBRARY_PATH
+            }
+        ],
+        JS_CONFIG_FILE = [
+            "config/config.js"
+        ],
         // File exclusions during sites build
         BUILD_EXCLUSIONS = /^(build|dist|bower\_components|node\_modules|\.|Gruntfile|config|package\.json|bower\.json).*/i,
+        // *****************************************************************//
+
+        // *****************************************************************//
+        //              INDIVIDUAL MODULE BUILD CONFIGURATION               //
+        // Note: Change below configuration to match your specific module   //
+        //       - Replace INDIVIDUAL_MODULE_NAME to match the component/   //
+        //          module path (e.x app/components/HelloWorldComponent)    //
+        //       - Replace the output module name (e.g module.min.js) with  //
+        //          desired output javascript name                          //
+        //       - Go to app/config/wrap.end, replace <CHANGEME> with your  //
+        //          module name. (e.x require('HelloWorldComponent'))       //
+        //       - Make sure the component are using correct format         //
+        //          define("<name>", function(require){})                   //
+        //          <name> --> should match with <CHANGEME> on the previous //
+        //                      step                                        //
+        // *****************************************************************//
+        // Module path e.g app/components/MyComponent
+        INDIVIDUAL_MODULE_NAME = "app/main",
+        // Output module name
+        INDIVIDUAL_MODULE_OUTPUT_NAME = BUILD_DIR + "/" + "module.min.js",
+        // DEFAULT MODULE building configuration
+        REQUIREJS_MODULE_CONFIG = {
+            generateSourceMaps : true,
+            preserveLicenseComments : false,
+            optimize : "uglify2",
+            uglify2 : {
+                output : {
+                    beautify : false
+                },
+                compress : {
+                    sequences : false,
+                    dead_code : true,
+                    drop_debugger : true,
+                    unused : true
+                },
+                mangle : false,
+                warnings : false
+            },
+            baseUrl : SOURCE_DIR,
+            // Specify individual modules here
+            name : INDIVIDUAL_MODULE_NAME,
+            out : INDIVIDUAL_MODULE_OUTPUT_NAME,
+            include : ALMOND_LIBRARY_PATH,
+            // wrap the module with standard wrapping.
+            // NOTE: Configure wrap.end to match the module name.
+            wrap : {
+                "startFile" : "config/wrap.start",
+                "endFile" : "config/wrap.end"
+            }
+        },
+        // *****************************************************************//
+
+        // *****************************************************************//
+        //              BrowserSync CONFIGURATION                           //
+        // List of files to be watched by browserSync                       //
+        // Default, will watch any changes of JS, CSS, HTML                 //
+        // *****************************************************************//
+        BROWSER_SYNC_WATCHED_FILES = [
+            "**/*.html", "*.html",
+            "**/*.js","*.js",
+            "**/*.css", "*.css"
+        ],
+        // *****************************************************************//
+
+        // *****************************************************************//
+        //              Unit Test with Karma CONFIGURATION                  //
+        // *****************************************************************//
         TEST_DIR = "test",
         KARMA_CONFIGURATION_FILES = [
             {pattern: 'config/**/*.js', included: true},
@@ -57,6 +127,7 @@ module.exports = function(grunt){
             {pattern: 'app/**/*.js', included: false},
             {pattern: 'assets/**/*.js', included: false}
         ];
+        // *****************************************************************//
     // ====================== END OF CONFIGURATION ============== //
 
     grunt.initConfig({
@@ -70,11 +141,11 @@ module.exports = function(grunt){
                     watchTask : true
                 },
                 bsFiles : {
-                    src : BROWSER_SYNC_WATCHED_FILES, 
+                    src : BROWSER_SYNC_WATCHED_FILES,
                 },
                 port : 3000
             }
-        },        
+        },
         connect: {
             dev: {
                 options: {
@@ -124,7 +195,7 @@ module.exports = function(grunt){
             file : {
                 configFile : TEST_DIR + "/config/individual_karma.conf.js"
             }
-        },      
+        },
         less : {
             build : {
                 options : {
@@ -138,7 +209,7 @@ module.exports = function(grunt){
                         cwd : LESS_ROOT_DIR,
                         src : LESS_SOURCE_DIR,
                         dest: CSS_ROOT_DIR,
-                        ext : ".css"                
+                        ext : ".css"
                     }
                 ]
             }
@@ -147,16 +218,19 @@ module.exports = function(grunt){
             options : {
                 optimize : "none",
                 optimizeCss : "none",
-                baseUrl : SOURCE_DIR,
-                dir : BUILD_DIR,
                 findNestedDependencies : true,
-                mainConfigFile : JS_CONFIG_FILE,
-                modules : JS_MODULE_DIR
+                mainConfigFile : JS_CONFIG_FILE
             },
             build : {
                 options : {
+                    baseUrl : SOURCE_DIR,
+                    dir : BUILD_DIR,
+                    modules : JS_MODULE_DIR,
                     fileExclusionRegExp : BUILD_EXCLUSIONS
                 }
+            },
+            build_component : {
+                options : REQUIREJS_MODULE_CONFIG
             }
         },
         uglify : {
@@ -205,7 +279,7 @@ module.exports = function(grunt){
                     nospawn : true
                 }
             }
-        }       
+        }
     });
 
     // load all grunt--* plugins
@@ -225,6 +299,15 @@ module.exports = function(grunt){
         'uglify:build',                 // minify and aggregate js
         'cssmin',                       // minify css
         'buildHTML',                    // optimize HTML output
+        'complete_task'
+    ]);
+    grunt.registerTask('build_component', [
+        'clean:build',                  // clean directory
+        'less',                         // generate new css from less sources
+        'requirejs:build_component',    // build the requirejs modules deps
+        'uglify:build',                 // minify and aggregate js
+        // 'cssmin',                    // minify css, uncomment if additional css is needed
+        // 'buildHTML',                 // optimize HTML output, uncomment if buildHTML needs to be invoked
         'complete_task'
     ]);
     grunt.registerTask('buildHTML', [
@@ -262,4 +345,7 @@ module.exports = function(grunt){
             grunt.task.run("karma:file");
         }
     });
+
+    // Help info to show available tasks
+
 }
