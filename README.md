@@ -74,18 +74,20 @@ __For development__:
 $ npm start
 ```
 
-__For building the optimized scripts__:
+__For building with optimized scripts (output directory is build/)__:
 ```bash
 $ npm run build
 OR
 $ grunt build
 ```
 
-__For building the site/app as deployable Bower library or standalone__:
+__For building the site/app as deployable Bower library or standalone (output directory is dist/)__:
+The scaffolding will gives a pre-defined template on the Gruntfile which can be customized. Please look for ___INDIVIDUAL MODULE BUILD CONFIGURATION___ in Gruntfile. 
+
 ```bash
-$ npm run build_component
+$ npm run build_component 
 OR
-$ grunt build:build_component
+$ grunt build_component 
 ```
 
 __For running in production mode__:

@@ -1,6 +1,6 @@
 Version 1.1.0
 * [x] Includes browserSync as the internal server and watch all JS,CSS and HTML
-* [ ] Fix the API/modules bundling support
+* [x] Fix the API/modules bundling support (individual modules)
 * [ ] Support ES6
 * [ ] Support JSLint
 

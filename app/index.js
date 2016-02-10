@@ -34,7 +34,7 @@ module.exports = yeoman.generators.Base.extend({
         var prompts = [
         {
             name : "generatorType",
-            type : "list", 
+            type : "list",
             message : 'What are we generating today? ',
             choices: [
                 {
@@ -50,7 +50,7 @@ module.exports = yeoman.generators.Base.extend({
         this.prompt(prompts, function(props){
             this.generatorType = props.generatorType;
             done();
-        }.bind(this));        
+        }.bind(this));
     },
     prepareStructureForSite : function(){
         var done = this.async();
@@ -97,9 +97,9 @@ module.exports = yeoman.generators.Base.extend({
         var done = this.async();
         var destinationFolderPrompts = [
             {
-                name : "destDirectory", 
+                name : "destDirectory",
                 type : "string",
-                default : this.appName, 
+                default : this.appName,
                 required : true,
                 message : "Specificy where this application to be created ? (use . for current directory)"
             }
@@ -159,7 +159,7 @@ module.exports = yeoman.generators.Base.extend({
         }
         if (this.generatorType === "spec") {
             // ------------ Spec creation ----------------
-            if (this.specName.indexOf("Spec") <= -1 && 
+            if (this.specName.indexOf("Spec") <= -1 &&
                 this.specName.indexOf("spec") <= -1){
                 this.specName += "Spec";
             }
@@ -169,8 +169,8 @@ module.exports = yeoman.generators.Base.extend({
 
             var specTemplateData = {
                 moduleName : this.specModuleName
-            };  
-            
+            };
+
             this.specCreatedDirectory = "test/";
             if (this.specDirectory !== ""){
                 // create folder under test folder
@@ -178,14 +178,14 @@ module.exports = yeoman.generators.Base.extend({
                     this.mkdir("test/" + this.specDirectory);
                 }
                 this.specCreatedDirectory += this.specDirectory + "/";
-            } 
+            }
 
             // create specFile
             this.fs.copyTpl(
                 this.templatePath("test/spec/_spec_template.js"),
                 this.destDirectory + this.specCreatedDirectory + this.specName,
                 specTemplateData
-                );            
+                );
         } else {
             // move all of the files which don't need any templating first
             this.fs.copy(
@@ -200,7 +200,7 @@ module.exports = yeoman.generators.Base.extend({
                 this.templatePath("_gruntfile.js"),
                 this.destDirectory + "Gruntfile.js"
                 );
-            
+
             // ------------ Sites creation ---------------
             var siteData = {
                 appName : this.appName,
@@ -234,13 +234,21 @@ module.exports = yeoman.generators.Base.extend({
                 this.templatePath("assets"),
                 this.destDirectory + "assets"
                 );
-            
+
             // config
             this.fs.copyTpl(
                 this.templatePath("config/_config.js"),
                 this.destDirectory + "config/config.js",
                 siteData
-                );          
+                );
+            this.fs.copy(
+                this.templatePath("config/_wrap.start"),
+                this.destDirectory + "config/wrap.start"
+                );
+            this.fs.copy(
+                this.templatePath("config/_wrap.end"),
+                this.destDirectory + "config/wrap.end"
+                );
 
             // App folder
             if (!this.fs.exists(this.destDirectory + "app")){
@@ -252,39 +260,39 @@ module.exports = yeoman.generators.Base.extend({
                 this.templatePath("app/routes/_appRoute.js"),
                 this.destDirectory + "app/routes/" + this.appName + "Route.js",
                 siteData
-                );            
+                );
             // templates
             this.fs.copyTpl(
                 this.templatePath("app/templates/_appTemplate.html"),
                 this.destDirectory + "app/templates/" + this.appName + "Template.html",
                 siteData
-                );            
+                );
             // views
             this.fs.copyTpl(
                 this.templatePath("app/views/_app.js"),
                 this.destDirectory + "app/views/" + this.appName + "View.js",
                 siteData
-                );            
+                );
             // main.js
             this.fs.copyTpl(
                 this.templatePath("app/main.js"),
                 this.destDirectory + "app/main.js",
                 siteData
-                );   
-            // spec and unit test         
+                );
+            // spec and unit test
             var karmaSuiteData = {
                 rootFolder : DEFAULT_UNITTEST_FOLDER,
-                suiteGeneration : true, 
+                suiteGeneration : true,
                 specName : "*Spec.js"
-            };  
+            };
 
             if (!this.fs.exists(this.destDirectory + "test")){
                 this.mkdir(this.destDirectory + "test");
-            }            
+            }
             if (!this.fs.exists(this.destDirectory + "test/config")){
                 this.mkdir(this.destDirectory + "test/config");
-            }   
-            // karma main configuration file         
+            }
+            // karma main configuration file
             this.fs.copyTpl(
                 this.templatePath("test/config/_karma.conf.js"),
                 this.destDirectory + "test/config/e2e_karma.conf.js",
@@ -319,5 +327,5 @@ module.exports = yeoman.generators.Base.extend({
             "runt and " + chalk.cyan("B") + "ackbone");
 
         this.log(yosay("Run npm install to load all dependencies, you might need 'sudo'; OR Run npm start to begin."));
-    }    
+    }
 });
