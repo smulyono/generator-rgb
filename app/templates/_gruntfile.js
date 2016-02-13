@@ -31,7 +31,9 @@ module.exports = function(grunt){
             "!app/*.min.js",
             "!assets/js/*.min.js",
             "!assets/js/**/*.min.js",
-            "!assets/js/vendor/**/*.js"
+            "!assets/js/vendor/**/*.js",
+            "!node-modules/**",
+            "!bower_components/**"
         ],
         ES6_SOURCE_DIR = [
             "app/**/*.es6",
@@ -42,7 +44,9 @@ module.exports = function(grunt){
             "!app/*.min.es6",
             "!assets/js/*.min.es6",
             "!assets/js/**/*.min.es6",
-            "!assets/js/vendor/**/*.es6"
+            "!assets/js/vendor/**/*.es6",
+            "!node-modules/**",
+            "!bower_components/**"
         ],
         // *****************************************************************//
 
@@ -122,8 +126,11 @@ module.exports = function(grunt){
         // *****************************************************************//
         BROWSER_SYNC_WATCHED_FILES = [
             "**/*.html", "*.html",
-            "**/*.js","*.js",
-            "**/*.css", "*.css"
+            "app/**/*.js","app/*.js",
+            "config/**/*.js", "config/*.js",
+            "assets/css/**/*.css", "assets/css/*.css",
+            "!node-modules/**",
+            "!bower_components/**"
         ],
         // *****************************************************************//
 
@@ -165,13 +172,13 @@ module.exports = function(grunt){
                     server : {
                         baseDir : "."
                     },
-                    watchTask : true
+                    watchTask : true,
+                    open : false  // disable automatically open browser
                 },
                 bsFiles : {
                     src : BROWSER_SYNC_WATCHED_FILES,
                 },
-                port : 3000,
-                open : false  // disable automatically open browser
+                port : 3000
             }
         },
         clean : {
@@ -277,6 +284,9 @@ module.exports = function(grunt){
             }
         },
         watch: {
+            // options : {
+            //     interval : 5007
+            // },
             less : {
                 files : lESS_WATCH_DIR,
                 tasks : ['less:build'],
@@ -300,7 +310,7 @@ module.exports = function(grunt){
 
     // Default task(s).
     grunt.registerTask('default', [
-        'less',
+        'less:build',
         'babel:build',
         'browserSync:dev',
         'watch'
