@@ -33,6 +33,17 @@ module.exports = function(grunt){
             "!assets/js/**/*.min.js",
             "!assets/js/vendor/**/*.js"
         ],
+        ES6_SOURCE_DIR = [
+            "app/**/*.es6",
+            "app/*.es6",
+            "assets/js/*.es6",
+            "assets/js/**/*.es6",
+            "!app/**/*.min.es6",
+            "!app/*.min.es6",
+            "!assets/js/*.min.es6",
+            "!assets/js/**/*.min.es6",
+            "!assets/js/vendor/**/*.es6"
+        ],
         // *****************************************************************//
 
         // *****************************************************************//
@@ -132,6 +143,22 @@ module.exports = function(grunt){
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        // ** Transpile ES6 into ES5 ** //
+        babel : {
+            options : {
+                presets : ['es2015', 'react'],
+                plugins : ['transform-es2015-modules-amd']
+            },
+            build : {
+                files : [{
+                        expand : true,
+                        cwd : SOURCE_DIR,
+                        src : ES6_SOURCE_DIR,
+                        ext : '.js'
+                }]
+            }
+        },
+        // ** BrowserSync for local development ** //
         browserSync : {
             dev  : {
                 options : {
@@ -143,22 +170,8 @@ module.exports = function(grunt){
                 bsFiles : {
                     src : BROWSER_SYNC_WATCHED_FILES,
                 },
-                port : 3000
-            }
-        },
-        connect: {
-            dev: {
-                options: {
-                    port: 3000,
-                    base: "."
-                }
-            },
-            live : {
-                options: {
-                    port: 8080,
-                    base: "build",
-                    keepalive: true
-                }
+                port : 3000,
+                open : false  // disable automatically open browser
             }
         },
         clean : {
@@ -176,14 +189,6 @@ module.exports = function(grunt){
                     }
                 ]
             }
-        },
-        compare_size : {
-            files : [
-                'assets/css/**/*.css',
-                'assets/js/**/*.js',
-                'build/assets/css/**/*.css',
-                'build/assets/js/**/*.js'
-            ]
         },
         karma : {
             options : {
@@ -278,6 +283,13 @@ module.exports = function(grunt){
                 options : {
                     nospawn : true
                 }
+            },
+            babel : {
+                files : ES6_SOURCE_DIR,
+                tasks : ['babel:build'],
+                options : {
+                    nospawn : true
+                }
             }
         }
     });
@@ -289,12 +301,14 @@ module.exports = function(grunt){
     // Default task(s).
     grunt.registerTask('default', [
         'less',
+        'babel:build',
         'browserSync:dev',
-        'watch:less'
+        'watch'
     ]);
     grunt.registerTask('build', [
         'clean:build',                  // clean directory
         'less',                         // generate new css from less sources
+        'babel:build',                  // Transpile ES6 files into JS
         'requirejs:build',              // build the requirejs modules deps
         'uglify:build',                 // minify and aggregate js
         'cssmin',                       // minify css
