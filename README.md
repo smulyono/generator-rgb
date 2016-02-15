@@ -21,6 +21,7 @@
 * [x] Assets optimization (HTML, Javascript and CSS) and aggregation
 * [x] Almond replacement on requirejs optimization
 * [x] Unit test integrations (karma & jasmine support)
+* [x] Support ES6 with Babel as transpiler. (*.es6 --> *.js)
 
 
 
@@ -82,6 +83,7 @@ $ grunt build
 ```
 
 __For building the site/app as deployable Bower library or standalone (output directory is dist/)__:
+
 The scaffolding will gives a pre-defined template on the Gruntfile which can be customized. Please look for ___INDIVIDUAL MODULE BUILD CONFIGURATION___ in Gruntfile. 
 
 ```bash
@@ -96,6 +98,22 @@ $ npm run start_live
 OR
 $ grunt connect:live
 ```
+
+__Working with ES6__:
+
+To work with ES6, put any es6 files under app/**. Running in development will automatically watch for any es6 file changes and transpiled them into es5 (with .js extension).
+
+* Work with requireJS [read here](https://medium.com/@kentcdodds/misunderstanding-es6-modules-upgrading-babel-tears-and-a-solution-ad2d5ab93ce0#.62m1pae90). 
+    ```javascript
+    var component = require('component').default;
+
+    component.js
+    export default class Component {}
+    ```
+
+* React transpiler is included by default
+
+
 
 ## License
 
