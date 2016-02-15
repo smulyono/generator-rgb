@@ -57,8 +57,9 @@ module.exports = function(grunt){
         ALMOND_LIBRARY_PATH = "assets/js/vendor/almond/almond",
         // Modules which will be build
         JS_MODULE_DIR = [
-            {
-                "name" : "app/main",
+            {<% if (generatorType === "site") { %>
+                "name" : "app/main",<% } else if (generatorType === "component") { %> 
+                "name" : "src/<%=appName %>", <% } %>
                 "include" : ALMOND_LIBRARY_PATH
             }
         ],
@@ -68,7 +69,7 @@ module.exports = function(grunt){
         // File exclusions during sites build
         BUILD_EXCLUSIONS = /^(build|dist|bower\_components|node\_modules|\.|Gruntfile|config|package\.json|bower\.json).*/i,
         // *****************************************************************//
-
+        <% if (generatorType === "site") { %>
         // *****************************************************************//
         //              INDIVIDUAL MODULE BUILD CONFIGURATION               //
         // Note: Change below configuration to match your specific module   //
@@ -117,6 +118,7 @@ module.exports = function(grunt){
                 "endFile" : "config/wrap.end"
             }
         },
+        <% } %>
         // *****************************************************************//
 
         // *****************************************************************//
@@ -213,7 +215,7 @@ module.exports = function(grunt){
                 options : {
                     compress : false, // cssmin will be later used on build
                     ieCompat : true,
-                    banner : "/*This is auto generated CSS files - <%= pkg.name %> <%= grunt.template.today('yyyy-mm-dd') %>*/"
+                    banner : "/*This is auto generated CSS files - <%%= pkg.name %> <%%= grunt.template.today('yyyy-mm-dd') %>*/"
                 },
                 files : [
                     {
@@ -240,16 +242,20 @@ module.exports = function(grunt){
                     modules : JS_MODULE_DIR,
                     fileExclusionRegExp : BUILD_EXCLUSIONS
                 }
+            <% if (generatorType === "component") { %>
+            }
+            <% } else { %>
             },
             build_component : {
                 options : REQUIREJS_MODULE_CONFIG
             }
+            <% } %>
         },
         uglify : {
             options : {
                 sourceMap : true,
                 compress : true,
-                banner : '/* <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */'
+                banner : '/* <%%= pkg.name %> <%%= grunt.template.today("yyyy-mm-dd") %> */'
             },
             build : {
                 files : [
