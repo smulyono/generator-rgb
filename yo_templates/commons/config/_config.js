@@ -7,7 +7,7 @@ requirejs.config({
         "text" : "assets/js/vendor/requirejs-text/text",
         "jasmine" : "assets/js/vendor/jasmine/jasmine",
         "jasmine-jquery" : "assets/js/vendor/jasmine-jquery/jasmine-jquery",
-        <% if (generatorType == 'app') { %>
+        <% if (generatorType == 'site') { %>
         // app modules
         "<%=appName%>" : "app/views/<%=appName%>View",
         "<%=appName%>Route" : "app/routes/<%=appName%>Route",

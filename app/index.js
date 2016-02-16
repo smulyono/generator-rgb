@@ -202,7 +202,7 @@ module.exports = yeoman.generators.Base.extend({
                 );
         } 
     },
-    structureCreationForSite : function(){
+    structureCreationForCommons : function(){
         if (this.generatorType === "site" || 
             this.generatorType === "component") {
 
@@ -222,37 +222,50 @@ module.exports = yeoman.generators.Base.extend({
                 this.destDirectory + ".jshintrc"
                 );
 
-            // ------------ Sites creation ---------------
-            var siteData = {
+            // ------------ Sites Data ---------------
+            this.destinationAppFolder = "app";
+            if (this.generatorType === "component"){
+                this.destinationAppFolder = "testpage/app";
+            }
+
+            this.mainFolder = "app";
+            if (this.generatorType === "component"){
+                this.mainFolder = "src";
+            }
+
+            this.siteData = {
                 appName : this.appName,
                 appDescription : this.appDescription,
                 appVersion : this.appVersion,
                 author : this.author,
                 authorEmail : this.email,
-                generatorType : this.generatorType
+                generatorType : this.generatorType,
+                destinationAppFolder : this.destinationAppFolder,
+                mainFolder : this.mainFolder
             };
 
             this.fs.copyTpl(
                 this.templatePath("_gruntfile.js"),
                 this.destDirectory + "Gruntfile.js",
-                siteData
+                this.siteData
                 );
             this.fs.copyTpl(
                     this.templatePath("_README.md"),
                     this.destDirectory + "README.md",
-                    siteData);
+                    this.siteData);
             this.fs.copyTpl(
                     this.templatePath("_bower.json"),
                     this.destDirectory + "bower.json",
-                    siteData);
+                    this.siteData);
             this.fs.copyTpl(
                     this.templatePath("_package.json"),
                     this.destDirectory + "package.json",
-                    siteData);
+                    this.siteData);
+
             this.fs.copyTpl(
                     this.templatePath("_index.html"),
-                    this.destDirectory + "index.html",
-                    siteData);
+                    this.destDirectory + (this.destinationAppFolder === "app" ? "" : "testpage/") + "index.html",
+                    this.siteData);
 
             // The assets folder
 
@@ -265,7 +278,7 @@ module.exports = yeoman.generators.Base.extend({
             this.fs.copyTpl(
                 this.templatePath("config/_config.js"),
                 this.destDirectory + "config/config.js",
-                siteData
+                this.siteData
                 );
             this.fs.copy(
                 this.templatePath("config/_wrap.start"),
@@ -310,6 +323,11 @@ module.exports = yeoman.generators.Base.extend({
                 }
             );
 
+        }
+    },
+    structureCreationForSites : function(){
+        if (this.generatorType === "site" ||
+            this.generatorType === "component") {
             // *****************************************************************//
             //                      Application Folders                         //
             // *****************************************************************//
@@ -320,27 +338,61 @@ module.exports = yeoman.generators.Base.extend({
             // routes
             this.fs.copyTpl(
                 this.templatePath("app/routes/_appRoute.js"),
-                this.destDirectory + "app/routes/" + this.appName + "Route.js",
-                siteData
+                this.destDirectory + this.destinationAppFolder + "/routes/" + this.appName + "Route.js",
+                this.siteData
                 );
             // templates
             this.fs.copyTpl(
                 this.templatePath("app/templates/_appTemplate.html"),
-                this.destDirectory + "app/templates/" + this.appName + "Template.html",
-                siteData
+                this.destDirectory + this.destinationAppFolder + "/templates/" + this.appName + "Template.html",
+                this.siteData
                 );
             // views
             this.fs.copyTpl(
                 this.templatePath("app/views/_app.js"),
-                this.destDirectory + "app/views/" + this.appName + "View.js",
-                siteData
+                this.destDirectory + this.destinationAppFolder +  "/views/" + this.appName + "View.js",
+                this.siteData
                 );
             // main.js
             this.fs.copyTpl(
                 this.templatePath("app/main.js"),
-                this.destDirectory + "app/main.js",
-                siteData
+                this.destDirectory + this.destinationAppFolder + "/main.js",
+                this.siteData
                 );           
+        }
+    },
+    structureCreationForComponent : function(){
+        if (this.generatorType === "component") {
+            // *****************************************************************//
+            //                      Component Folders                           //
+            // *****************************************************************//
+
+            // Specific app templates
+            this.sourceRoot(path.join(__dirname , '../yo_templates/component_contents'));
+
+            // main.js
+            this.fs.copyTpl(
+                this.templatePath("src/_component.es6"),
+                this.destDirectory + "src/" + this.appName + ".es6",
+                this.siteData
+                );           
+            this.fs.copyTpl(
+                this.templatePath("src/_component.js"),
+                this.destDirectory + "src/" + this.appName + ".js",
+                this.siteData
+                );           
+
+            // Specific app templates
+            this.sourceRoot(path.join(__dirname , '../yo_templates/commons'));
+
+            // Special config for testpage
+            this.siteData["generatorType"] = "site";
+            this.fs.copyTpl(
+                this.templatePath("config/_config.js"),
+                this.destDirectory + this.destinationAppFolder + "/config/config.js",
+                this.siteData
+                );
+
         }
     },
     install: function() {

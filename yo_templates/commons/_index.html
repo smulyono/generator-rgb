@@ -12,11 +12,18 @@
     <!-- update apple touch icon as necessary -->
     <!-- link rel="apple-touch-icon" href="apple-touch-icon.png" -->
 
-    <!-- build:css assets/css/vendor/vendor.css -->
-    <link rel="stylesheet" href="assets/css/vendor/bootstrap/bootstrap.css">
-    <!-- endbuild -->
+    <% if (generatorType === "site") { %>
+        <!-- build:css assets/css/vendor/vendor.css -->
+        <link rel="stylesheet" href="assets/css/vendor/bootstrap/bootstrap.css">
+        <!-- endbuild -->
 
-    <link rel="stylesheet" href="assets/css/main.css">
+        <link rel="stylesheet" href="assets/css/main.css">
+    <% } else { %>
+        <!-- build:css ../assets/css/vendor/vendor.css -->
+        <link rel="stylesheet" href="../assets/css/vendor/bootstrap/bootstrap.css">
+        <!-- endbuild -->
+        <link rel="stylesheet" href="../assets/css/main.css">
+    <% } %>
 
     <script src="assets/js/vendor/modernizr/modernizr.js"></script>   
 </head>
@@ -29,11 +36,20 @@
     <div id="mainContainer">
     </div>
     
-    <!-- build:remove -->
-    <script type="text/javascript" src="assets/js/vendor/requirejs/require.js"></script>
-    <script type="text/javascript" src="config/config.js"></script>
-    <!-- endbuild -->
+    <% if (generatorType === "site") { %>
+        <!-- build:remove -->
+        <script type="text/javascript" src="assets/js/vendor/requirejs/require.js"></script>
+        <script type="text/javascript" src="config/config.js"></script>
+        <!-- endbuild -->
 
-    <script type="text/javascript" src="app/main.js"></script>
+        <script type="text/javascript" src="app/main.js"></script>
+    <% } else { %>
+        <!-- build:remove -->
+        <script type="text/javascript" src="../assets/js/vendor/requirejs/require.js"></script>
+        <script type="text/javascript" src="app/config/config.js"></script>
+        <!-- endbuild -->
+
+        <script type="text/javascript" src="app/main.js"></script>
+    <% } %>
 </body>
 </html>

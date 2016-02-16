@@ -22,26 +22,28 @@ module.exports = function(grunt){
         //              LIST OF JAVASCRIPT FILES BEING DEPLOYED             //
         // Default: only concern of everything under app/** and assets/**   //
         // *****************************************************************//
-        JS_SOURCE_DIR = [
-            "app/**/*.js",
-            "app/*.js",
+        JS_SOURCE_DIR = [<% if (generatorType === "site") {%>
+            "<%= destinationAppFolder %>/**/*.js",
+            "<%= destinationAppFolder %>/*.js",<%}%><% if (generatorType === "component") {%>
+            "src/**/*.js", "src/*.js",<% } %>
             "assets/js/*.js",
             "assets/js/**/*.js",
-            "!app/**/*.min.js",
-            "!app/*.min.js",
+            "!<%= destinationAppFolder %>/**/*.min.js",
+            "!<%= destinationAppFolder %>/*.min.js",
             "!assets/js/*.min.js",
             "!assets/js/**/*.min.js",
             "!assets/js/vendor/**/*.js",
             "!node-modules/**",
             "!bower_components/**"
         ],
-        ES6_SOURCE_DIR = [
-            "app/**/*.es6",
-            "app/*.es6",
+        ES6_SOURCE_DIR = [<% if (generatorType === "site") {%>
+            "<%= destinationAppFolder %>/**/*.es6",
+            "<%= destinationAppFolder %>/*.es6",<%}%><% if (generatorType === "component") {%>
+            "src/**/*.es6", "src/*.es6",<% } %>
             "assets/js/*.es6",
             "assets/js/**/*.es6",
-            "!app/**/*.min.es6",
-            "!app/*.min.es6",
+            "!<%= destinationAppFolder %>/**/*.min.es6",
+            "!<%= destinationAppFolder %>/*.min.es6",
             "!assets/js/*.min.es6",
             "!assets/js/**/*.min.es6",
             "!assets/js/vendor/**/*.es6",
@@ -58,7 +60,7 @@ module.exports = function(grunt){
         // Modules which will be build
         JS_MODULE_DIR = [
             {<% if (generatorType === "site") { %>
-                "name" : "app/main",<% } else if (generatorType === "component") { %> 
+                "name" : "<%= destinationAppFolder %>/main",<% } else if (generatorType === "component") { %> 
                 "name" : "src/<%=appName %>", <% } %>
                 "include" : ALMOND_LIBRARY_PATH
             }
@@ -128,7 +130,7 @@ module.exports = function(grunt){
         // *****************************************************************//
         BROWSER_SYNC_WATCHED_FILES = [
             "**/*.html", "*.html",
-            "app/**/*.js","app/*.js",
+            "<%= destinationAppFolder %>/**/*.js","<%= destinationAppFolder %>/*.js",
             "config/**/*.js", "config/*.js",
             "assets/css/**/*.css", "assets/css/*.css",
             "!node-modules/**",
@@ -142,9 +144,9 @@ module.exports = function(grunt){
         TEST_DIR = "test",
         KARMA_CONFIGURATION_FILES = [
             {pattern: 'config/**/*.js', included: true},
-            {pattern: 'app/**/templates/**/*.html', included : false},
-            {pattern: 'app/**/i18n/**/*.properties', included : false},
-            {pattern: 'app/**/*.js', included: false},
+            {pattern: '<%= mainFolder %>/**/templates/**/*.html', included : false},
+            {pattern: '<%= mainFolder %>/**/i18n/**/*.properties', included : false},
+            {pattern: '<%= mainFolder %>/**/*.js', included: false},
             {pattern: 'assets/**/*.js', included: false}
         ];
         // *****************************************************************//
@@ -172,7 +174,7 @@ module.exports = function(grunt){
             dev  : {
                 options : {
                     server : {
-                        baseDir : "."
+                        baseDir : <% destinationAppFolder === "app" ? "." : destinationAppFolder %>
                     },
                     watchTask : true,
                     open : false  // disable automatically open browser

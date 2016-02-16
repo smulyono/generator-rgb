@@ -3,7 +3,7 @@ Version 1.1.0
 * [x] Fix the API/modules bundling support (individual modules)
 * [x] Support ES6
 * [x] Perf improvement for npm@2 (dedupe), update modules version
-* [ ] Introduce new choices 'Component creation -- bower package'
+* [x] Introduce new choices 'Component creation -- bower package'
 * [ ] Includes some example project (ES6, React, API Module)
 
 Version 1.0.1
