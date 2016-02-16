@@ -1,20 +1,20 @@
 'use strict';
 var path = require('path');
-var assert = require('yeoman-generator').assert;
-var helpers = require('yeoman-generator').test;
+var assert = require('yeoman-assert');
+var helpers = require('yeoman-test');
 var os = require('os');
 
 describe('rgb:app', function() {
-    describe("Test without npm install", function() {
+    describe("Test Site creation without npm install", function() {
         before(function(done) {
             helpers.run(path.join(__dirname, '../app'))
-            .inDir(path.join(os.tmpdir(), './temp-test'))
             // mock any options
             .withOptions({
                 'skip-install': true
             })
             // mock any prompts
-            .withPrompt({
+            .withPrompts({
+                "generatorType" : "site",
                 "appName" : "rgbTestApp",
                 "appDescription" : "some description",
                 "version" : "1.0.0",
@@ -31,5 +31,11 @@ describe('rgb:app', function() {
             // check the package.json contents
             assert.fileContent('package.json', /rgbTestApp/);
         });
+    });
+    describe('Test application creation', function() {
+        
+    });
+    describe('Test unit test creation', function() {
+        
     });
 });
